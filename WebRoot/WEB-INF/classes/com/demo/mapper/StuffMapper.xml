@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.demo.dao.StuffDao">
+
+ <insert id="addone" parameterType="com.demo.po.Stuff">
+ 	insert into t_d0_stuff values(0,#{sectionid},#{divcode},
+ 	#{orgid},#{orgno},#{repmanname},#{gender},#{birthdate},
+ 	#{folk},#{pol},#{mobile},#{worktel},#{email},
+ 	#{edu},#{gracollege},#{choicespe},#{spe},#{beforespe},
+ 	#{beginworkdate},#{managejob},#{joblevel},#{title},#{getindate},
+ 	#{perpro},#{pertype},#{enfcardno},#{getcarddate},#{healthperno},
+ 	#{getquadate},#{healthcardno},#{cardday},#{ifstaffper},#{percode})
+ </insert>
+    <select id = "getStuffByPage" parameterType = "int" resultType = "map">
+  		select s.*,o.orgname,k.divname
+ 		from t_d0_stuff s left join t_d0_organization o on s.orgid = o.id
+ 		left join t_d0_section k on s.sectionid = k.id
+  		limit #{page},5
+  	</select>
+  	<select id = "getStuffByid" parameterType = "int"  resultType = "com.demo.po.Stuff">
+  		select * from t_d0_stuff where id =#{id}
+  	</select>
+  	<select id = "getSize" resultType = "int">
+  			select count(id) from t_d0_stuff;
+  	</select>
+  	
+  	<delete id = "delone" parameterType = "int">
+  		delete from t_d0_stuff where id = #{id}
+  	</delete>
+  	
+  	<update id = "edit" parameterType = "com.demo.po.Stuff">
+  		update t_d0_stuff set sectionId=#{sectionid},divCode=#{divcode},
+		repManName=#{repmanname},gender=#{gender},orgId=#{orgid},orgNo=#{orgno},
+		birthDate=#{birthdate},folk=#{folk},pol=#{pol},mobile=#{mobile},workTel=#{worktel},
+		email=#{email},edu=#{edu},graCollege=#{gracollege},choiceSpe=#{choicespe},spe=#{spe},
+		beforeSpe=#{beforespe},beginWorkDate=#{beginworkdate},manageJob=#{managejob},jobLevel=#{joblevel},
+		title=#{title},getInDate=#{getindate},perPro=#{perpro},perType=#{pertype},enfCardNo=#{enfcardno},
+		getCardDate=#{getcarddate},healthPerNo=#{healthperno},getQuaDate=#{getquadate},healthCardNo=#{healthcardno},
+		cardDay=#{cardday},ifStaffPer=#{ifstaffper},perCode=#{percode}
+  		
+  		
+  		where id = #{id}
+  	</update>
+</mapper>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace = "com.demo.dao.SectionDao">
+  	
+  		<select id = "getbyorgid" parameterType="int" resultType = "com.demo.po.Section">
+  			select * from t_d0_section where orgid = #{orgid}
+  		</select>
+  		<select id = "getsectionbypage" parameterType = "int" resultType = "com.demo.po.Section">
+  			
+  			select * from t_d0_section limit #{page},5
+  		</select>
+  		
+  		<select id ="getsectionpage" resultType = "int">
+  			select count(id) from t_d0_section
+  		</select>
+</mapper>
